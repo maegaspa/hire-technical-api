@@ -7,9 +7,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 class Project
 {
-    /**
-     * @Groups({"project"})
-     */
     private $id;
 
     /**
