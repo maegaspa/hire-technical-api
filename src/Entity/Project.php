@@ -2,14 +2,24 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 class Project
 {
-    
+    /**
+     * @Groups({"project"})
+     */
     private $id;
 
+    /**
+     * @Groups({"project"})
+     */
     private $name;
 
+    /**
+     * @Groups({"project"})
+     */
     private $slug;
 
     public function getId(): ?int
@@ -46,13 +56,5 @@ class Project
         $this->slug = $slug;
 
         return $this;
-    }
-
-    public function serialize() {
-        return [
-            "id" => $this->getId(),
-            "name" => $this->getName(),
-            "slug" => $this->getSlug()
-        ];
     }
 }
