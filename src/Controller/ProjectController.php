@@ -32,7 +32,8 @@ class ProjectController extends AbstractController
     {
         $project = $this->projectManager->createProject();
         $form = $this->formFactory->create(ProjectType::class, $project);
-        $form->handleRequest($request);
+        $data = json_decode($request->getContent(), true);
+        $form->submit($data);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $this->serializer->serialize($project, 'json', ['groups' => 'project']);
