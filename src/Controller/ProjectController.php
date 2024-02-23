@@ -16,11 +16,13 @@ class ProjectController extends AbstractController
 {
     private $projectManager;
     private $serializer;
+    private $formFactory;
 
-    public function __construct(ProjectManager $projectManager, SerializerInterface $serializer)
+    public function __construct(ProjectManager $projectManager, SerializerInterface $serializer, FormFactoryInterface $formFactory)
     {
         $this->projectManager = $projectManager;
         $this->serializer = $serializer;
+        $this->formFactory = $formFactory;
     }
 
     /**
@@ -37,6 +39,6 @@ class ProjectController extends AbstractController
             return new JsonResponse($data, 200, [], true);
         }
 
-        return $this->json(["error" => "An error occurred"]);
+        return $this->json(["error" => "An error occurred"], 500);
     }
 }
